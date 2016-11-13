@@ -1,14 +1,27 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package great;
 
-/**
- *
- * @author Juan O'Hara
- */
+
 public class Ilegal {
+    private String nombre;
+    private String nacionalidad;
+    private String nacimiento;
+    private String raza;
+    private String origen;
+    private boolean deportado;
+
+    public Ilegal(String nombre, String nacionalidad, String nacimiento, String raza, String origen, boolean deportado) {
+        this.nombre = nombre;
+        this.nacionalidad = nacionalidad;
+        this.nacimiento = nacimiento;
+        this.raza = raza;
+        this.origen = origen;
+        this.deportado = deportado;
+    }
+
+    @Override
+    public String toString() {
+        return "nombre=" + nombre + ", origen=" + origen + ", deportado=" + deportado;
+    }
+    
     
 }
