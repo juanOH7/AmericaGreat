@@ -2,15 +2,16 @@ package great;
 
 import java.util.Random;
 
+
 /**
  * @DanielSalgado
  */
-public class Viaje implements Runnable{
+public class Abordaje implements Runnable{
     Random generador = new Random();
     public static boolean band=false;    
-    private int duracionRuta = 5+generador.nextInt((10+1)-5);;
+    private int duracionRuta = generador.nextInt(5+1);
     
-    public Viaje(){
+    public Abordaje(){
         
     }
     
