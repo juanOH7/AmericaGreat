@@ -5,6 +5,10 @@
  */
 package great;
 
+import java.util.Calendar;
+import javax.swing.JTextField;
+
+
 /**
  *
  * @author danie
@@ -17,6 +21,8 @@ public class Principal extends javax.swing.JFrame {
     public Principal() {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
+        administrarIlegales.cargarArchivo();
+        System.out.println(administrarIlegales.getList().getHead());
     }
 
     /**
@@ -42,7 +48,7 @@ public class Principal extends javax.swing.JFrame {
         jb_agregarIlegal = new javax.swing.JButton();
         jb_menu = new javax.swing.JMenuBar();
         jm_menu1 = new javax.swing.JMenu();
-        ji_registro = new javax.swing.JMenuItem();
+        ji_salir = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         lb_nombre.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -136,17 +142,23 @@ public class Principal extends javax.swing.JFrame {
         jd_registroLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {js_raza, tf_pais});
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("America Great");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         jm_menu1.setText("File");
 
-        ji_registro.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
-        ji_registro.setText("Registro");
-        ji_registro.addActionListener(new java.awt.event.ActionListener() {
+        ji_salir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
+        ji_salir.setText("Registro");
+        ji_salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ji_registroActionPerformed(evt);
+                ji_salirActionPerformed(evt);
             }
         });
-        jm_menu1.add(ji_registro);
+        jm_menu1.add(ji_salir);
 
         jb_menu.add(jm_menu1);
 
@@ -169,18 +181,26 @@ public class Principal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ji_registroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ji_registroActionPerformed
+    private void ji_salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ji_salirActionPerformed
         // TODO add your handling code here:
         jd_registro.setModal(true);
         jd_registro.pack();
         jd_registro.setLocationRelativeTo(this); 
         jd_registro.setVisible(true);
-    }//GEN-LAST:event_ji_registroActionPerformed
+    }//GEN-LAST:event_ji_salirActionPerformed
 
     private void jb_agregarIlegalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_agregarIlegalActionPerformed
         // TODO add your handling code here:
-        
+        String fecha = ((JTextField)jc_date.getDateEditor().getUiComponent()).getText();
+        Ilegal ilegal = new Ilegal(tf_nombre.getText(),tf_nacionalidad.getText(),fecha,js_raza.getValue().toString(),tf_pais.getText(),false);
+        administrarIlegales.write(ilegal);
+        //administrarIlegales.getList().add(ilegal);
     }//GEN-LAST:event_jb_agregarIlegalActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // TODO add your handling code here:
+        administrarIlegales.refresh();
+    }//GEN-LAST:event_formWindowClosed
 
     /**
      * @param args the command line arguments
@@ -223,7 +243,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuBar jb_menu;
     private com.toedter.calendar.JDateChooser jc_date;
     private javax.swing.JDialog jd_registro;
-    private javax.swing.JMenuItem ji_registro;
+    private javax.swing.JMenuItem ji_salir;
     private javax.swing.JMenu jm_menu1;
     private javax.swing.JSpinner js_raza;
     private javax.swing.JLabel lb_fecha;
@@ -235,4 +255,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField tf_nombre;
     private javax.swing.JTextField tf_pais;
     // End of variables declaration//GEN-END:variables
+    AdminIlegales administrarIlegales = new 
+        AdminIlegales("./ilegales.bin");
+    
 }

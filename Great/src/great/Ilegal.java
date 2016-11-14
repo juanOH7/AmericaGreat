@@ -1,9 +1,11 @@
 package great;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 
-public class Ilegal {
+public class Ilegal implements Serializable{
+    private static final long SerialVersionUID = 636L;
     private String nombre;
     private String nacionalidad;
     private String nacimiento;
