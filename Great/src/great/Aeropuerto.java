@@ -1,14 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package great;
 
-/**
- *
- * @author Juan O'Hara
- */
 public class Aeropuerto {
-    //lista aviones cola
+    private final int cap = 10;
+    private final Queue aviones = new Queue();
+
+    public void entrar(Avion x){
+        aviones.Queue(x);
+    }
+    
+    public void salir(){
+        aviones.Dequeue();
+    }
 }
