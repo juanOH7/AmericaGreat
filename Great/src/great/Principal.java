@@ -5,7 +5,10 @@
  */
 package great;
 
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.util.Calendar;
+import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 
 
@@ -23,6 +26,8 @@ public class Principal extends javax.swing.JFrame {
         this.setExtendedState(MAXIMIZED_BOTH);
         administrarIlegales.cargarArchivo();
         System.out.println(administrarIlegales.getList().getHead());
+        Image img = Toolkit.getDefaultToolkit().createImage("./trump2.jpg").getScaledInstance(640, 320, 0);
+        this.lb_imgPrincipal.setIcon(new ImageIcon(img));
     }
 
     /**
@@ -46,10 +51,14 @@ public class Principal extends javax.swing.JFrame {
         lb_pais = new javax.swing.JLabel();
         tf_pais = new javax.swing.JTextField();
         jb_agregarIlegal = new javax.swing.JButton();
+        lb_imagenRegistro = new javax.swing.JLabel();
+        lb_imgPrincipal = new javax.swing.JLabel();
         jb_menu = new javax.swing.JMenuBar();
         jm_menu1 = new javax.swing.JMenu();
-        ji_salir = new javax.swing.JMenuItem();
+        ji_registro = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+
+        jd_registro.setTitle("Registro Ilegales");
 
         lb_nombre.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lb_nombre.setText("Nombre: ");
@@ -83,6 +92,9 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(jd_registroLayout.createSequentialGroup()
                 .addGroup(jd_registroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jd_registroLayout.createSequentialGroup()
+                        .addGap(114, 114, 114)
+                        .addComponent(jb_agregarIlegal))
+                    .addGroup(jd_registroLayout.createSequentialGroup()
                         .addGap(32, 32, 32)
                         .addGroup(jd_registroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(lb_pais, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -96,11 +108,10 @@ public class Principal extends javax.swing.JFrame {
                             .addComponent(tf_nombre, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
                             .addComponent(jc_date, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
                             .addComponent(js_raza)
-                            .addComponent(tf_pais)))
-                    .addGroup(jd_registroLayout.createSequentialGroup()
-                        .addGap(114, 114, 114)
-                        .addComponent(jb_agregarIlegal)))
-                .addContainerGap(372, Short.MAX_VALUE))
+                            .addComponent(tf_pais))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
+                .addComponent(lb_imagenRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41))
         );
 
         jd_registroLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jc_date, tf_nacionalidad, tf_nombre});
@@ -109,28 +120,31 @@ public class Principal extends javax.swing.JFrame {
             jd_registroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jd_registroLayout.createSequentialGroup()
                 .addGap(29, 29, 29)
-                .addGroup(jd_registroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lb_nombre)
-                    .addComponent(tf_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jd_registroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lb_nacionalidad1)
-                    .addComponent(tf_nacionalidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
                 .addGroup(jd_registroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lb_fecha)
-                    .addComponent(jc_date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
-                .addGroup(jd_registroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lb_raza)
-                    .addComponent(js_raza, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jd_registroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lb_pais)
-                    .addComponent(tf_pais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(43, 43, 43)
-                .addComponent(jb_agregarIlegal)
-                .addContainerGap(224, Short.MAX_VALUE))
+                    .addComponent(lb_imagenRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jd_registroLayout.createSequentialGroup()
+                        .addGroup(jd_registroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lb_nombre)
+                            .addComponent(tf_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jd_registroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lb_nacionalidad1)
+                            .addComponent(tf_nacionalidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jd_registroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lb_fecha)
+                            .addComponent(jc_date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(21, 21, 21)
+                        .addGroup(jd_registroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lb_raza)
+                            .addComponent(js_raza, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jd_registroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lb_pais)
+                            .addComponent(tf_pais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(43, 43, 43)
+                        .addComponent(jb_agregarIlegal)))
+                .addContainerGap(147, Short.MAX_VALUE))
         );
 
         jd_registroLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {lb_nombre, tf_nombre});
@@ -151,14 +165,14 @@ public class Principal extends javax.swing.JFrame {
 
         jm_menu1.setText("File");
 
-        ji_salir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
-        ji_salir.setText("Registro");
-        ji_salir.addActionListener(new java.awt.event.ActionListener() {
+        ji_registro.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
+        ji_registro.setText("Registro");
+        ji_registro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ji_salirActionPerformed(evt);
+                ji_registroActionPerformed(evt);
             }
         });
-        jm_menu1.add(ji_salir);
+        jm_menu1.add(ji_registro);
 
         jb_menu.add(jm_menu1);
 
@@ -171,23 +185,32 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(63, 63, 63)
+                .addComponent(lb_imgPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(97, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 279, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(62, 62, 62)
+                .addComponent(lb_imgPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(96, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ji_salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ji_salirActionPerformed
+    private void ji_registroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ji_registroActionPerformed
         // TODO add your handling code here:
+        Image img = Toolkit.getDefaultToolkit().createImage("./trump1.jpg").getScaledInstance(220, 293, 0);
+        this.lb_imagenRegistro.setIcon(new ImageIcon(img));
         jd_registro.setModal(true);
         jd_registro.pack();
         jd_registro.setLocationRelativeTo(this); 
         jd_registro.setVisible(true);
-    }//GEN-LAST:event_ji_salirActionPerformed
+
+    }//GEN-LAST:event_ji_registroActionPerformed
 
     private void jb_agregarIlegalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_agregarIlegalActionPerformed
         // TODO add your handling code here:
@@ -243,10 +266,12 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuBar jb_menu;
     private com.toedter.calendar.JDateChooser jc_date;
     private javax.swing.JDialog jd_registro;
-    private javax.swing.JMenuItem ji_salir;
+    private javax.swing.JMenuItem ji_registro;
     private javax.swing.JMenu jm_menu1;
     private javax.swing.JSpinner js_raza;
     private javax.swing.JLabel lb_fecha;
+    private javax.swing.JLabel lb_imagenRegistro;
+    private javax.swing.JLabel lb_imgPrincipal;
     private javax.swing.JLabel lb_nacionalidad1;
     private javax.swing.JLabel lb_nombre;
     private javax.swing.JLabel lb_pais;
