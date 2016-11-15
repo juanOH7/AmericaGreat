@@ -26,7 +26,7 @@ public class Principal extends javax.swing.JFrame {
         this.setExtendedState(MAXIMIZED_BOTH);
         administrarIlegales.cargarArchivo();
         System.out.println(administrarIlegales.getList().getHead());
-        Image img = Toolkit.getDefaultToolkit().createImage("./trump2.jpg").getScaledInstance(640, 320, 0);
+        Image img = Toolkit.getDefaultToolkit().createImage("./trump2.jpg").getScaledInstance(1400, 700, 0);
         this.lb_imgPrincipal.setIcon(new ImageIcon(img));
     }
 
@@ -62,20 +62,25 @@ public class Principal extends javax.swing.JFrame {
 
         lb_nombre.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lb_nombre.setText("Nombre: ");
+        lb_nombre.setOpaque(true);
 
         lb_fecha.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lb_fecha.setText("Fecha Nacimiento: ");
+        lb_fecha.setOpaque(true);
 
         lb_nacionalidad1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lb_nacionalidad1.setText("Nacionalidad:");
+        lb_nacionalidad1.setOpaque(true);
 
         lb_raza.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lb_raza.setText("Raza:");
+        lb_raza.setOpaque(true);
 
         js_raza.setModel(new javax.swing.SpinnerListModel(new String[] {"Hispano", "Afroasiático", "Indioeuropeo", "Níger-Congo"}));
 
         lb_pais.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lb_pais.setText("País Origen");
+        lb_pais.setOpaque(true);
 
         jb_agregarIlegal.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jb_agregarIlegal.setText("Agregar");
@@ -84,6 +89,8 @@ public class Principal extends javax.swing.JFrame {
                 jb_agregarIlegalActionPerformed(evt);
             }
         });
+
+        lb_imagenRegistro.setOpaque(true);
 
         javax.swing.GroupLayout jd_registroLayout = new javax.swing.GroupLayout(jd_registro.getContentPane());
         jd_registro.getContentPane().setLayout(jd_registroLayout);
@@ -163,6 +170,11 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        jb_menu.setBackground(new java.awt.Color(255, 0, 0));
+        jb_menu.setBorder(null);
+        jb_menu.setForeground(new java.awt.Color(255, 0, 0));
+        jb_menu.setBorderPainted(false);
+
         jm_menu1.setText("File");
 
         ji_registro.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
@@ -186,16 +198,14 @@ public class Principal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(63, 63, 63)
-                .addComponent(lb_imgPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(97, Short.MAX_VALUE))
+                .addComponent(lb_imgPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 1400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 23, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(62, 62, 62)
-                .addComponent(lb_imgPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(96, Short.MAX_VALUE))
+                .addComponent(lb_imgPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 21, Short.MAX_VALUE))
         );
 
         pack();
