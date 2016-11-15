@@ -9,7 +9,7 @@ import java.util.Random;
 public class Abordaje implements Runnable{
     Random generador = new Random();
     public static boolean band=false;    
-    private int duracionRuta = generador.nextInt(5+1);
+    private int duracionAbordaje = generador.nextInt(5+1);
     
     public Abordaje(){
         
@@ -18,8 +18,8 @@ public class Abordaje implements Runnable{
     @Override
     public void run() {
         band=false;
-        for (int i=1; i <= this.duracionRuta ; i++){
-            System.out.println("Viajando Segundos: " +i);
+        for (int i=1; i <= this.duracionAbordaje ; i++){
+            System.out.println("Abordaje Segundos: " +i);
             try{Thread.sleep( 1000 );}
             catch (InterruptedException e){
                 System.err.println( e.getMessage() );
