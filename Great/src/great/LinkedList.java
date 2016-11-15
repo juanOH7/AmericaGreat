@@ -7,7 +7,8 @@ public class LinkedList extends List{
         super();
     }
 
-    public int find(Node x) {
+    public int find(Object otro) {
+        Node x = new Node(otro);
         if (isEmpty()) {
             return -1;
         }

@@ -8,7 +8,7 @@ public class Aeropuerto {
         aviones.Queue(x);
     }
     
-    public void salir(){
-        aviones.Dequeue();
+    public Object salir(){
+        return aviones.Dequeue();
     }
 }

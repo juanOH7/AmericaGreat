@@ -64,7 +64,7 @@ public class Ilegal implements Serializable{
     
     @Override
     public String toString() {
-        return "nombre=" + nombre + ", origen=" + origen + ", deportado=" + deportado;
+        return nombre;
     }
     
     
