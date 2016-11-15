@@ -323,9 +323,12 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
         Ilegal temp = (Ilegal) jc_ilegales.getSelectedItem();
         if (!temp.isDeported()) {
+            new Thread(new Abordaje()).start();
+            //Animacion de Progress Bar
+            new Thread(new HiloAbordaje(this.barraProgreso1)).start();
             aeropuerto.Abord(temp);
             temp.changeStatus(true);
-            JOptionPane.showMessageDialog(null, "Great!!");
+            //JOptionPane.showMessageDialog(null, "Great!!");
             if (((Avion)aeropuerto.ver()).isFull()) {
                 Viaje.Queue(aeropuerto.salir());
             }

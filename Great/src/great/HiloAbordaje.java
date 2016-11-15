@@ -30,7 +30,7 @@ public class HiloAbordaje implements Runnable{
             if( Abordaje.band )
             {
                 barraProgreso.setValue(1000);
-                JOptionPane.showMessageDialog(null, "El Avion Termino Su Abordaje");
+                JOptionPane.showMessageDialog(null, "El Ilegal Termino Su Abordaje");
                 break;  
             }            
         }
