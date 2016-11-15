@@ -52,10 +52,15 @@ public class Principal extends javax.swing.JFrame {
         tf_pais = new javax.swing.JTextField();
         jb_agregarIlegal = new javax.swing.JButton();
         lb_imagenRegistro = new javax.swing.JLabel();
+        jd_aeropuerto = new javax.swing.JDialog();
+        lb_progreso = new javax.swing.JLabel();
+        barraProgreso = new javax.swing.JProgressBar();
+        jb_despacharAvion = new javax.swing.JButton();
         lb_imgPrincipal = new javax.swing.JLabel();
         jb_menu = new javax.swing.JMenuBar();
         jm_menu1 = new javax.swing.JMenu();
         ji_registro = new javax.swing.JMenuItem();
+        ji_abordaje = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         jd_registro.setTitle("Registro Ilegales");
@@ -162,6 +167,44 @@ public class Principal extends javax.swing.JFrame {
 
         jd_registroLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {js_raza, tf_pais});
 
+        jd_aeropuerto.setTitle("Aeropuerto");
+
+        lb_progreso.setText("Progreso de Viaje");
+
+        jb_despacharAvion.setText("Despachar Avion");
+        jb_despacharAvion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_despacharAvionActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jd_aeropuertoLayout = new javax.swing.GroupLayout(jd_aeropuerto.getContentPane());
+        jd_aeropuerto.getContentPane().setLayout(jd_aeropuertoLayout);
+        jd_aeropuertoLayout.setHorizontalGroup(
+            jd_aeropuertoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_aeropuertoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jd_aeropuertoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(barraProgreso, javax.swing.GroupLayout.DEFAULT_SIZE, 680, Short.MAX_VALUE)
+                    .addGroup(jd_aeropuertoLayout.createSequentialGroup()
+                        .addGroup(jd_aeropuertoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jb_despacharAvion, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lb_progreso))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jd_aeropuertoLayout.setVerticalGroup(
+            jd_aeropuertoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_aeropuertoLayout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addComponent(lb_progreso)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(barraProgreso, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jb_despacharAvion, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(320, Short.MAX_VALUE))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("America Great");
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -185,6 +228,15 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         jm_menu1.add(ji_registro);
+
+        ji_abordaje.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
+        ji_abordaje.setText("Abordaje");
+        ji_abordaje.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ji_abordajeActionPerformed(evt);
+            }
+        });
+        jm_menu1.add(ji_abordaje);
 
         jb_menu.add(jm_menu1);
 
@@ -235,6 +287,22 @@ public class Principal extends javax.swing.JFrame {
         administrarIlegales.refresh();
     }//GEN-LAST:event_formWindowClosed
 
+    private void ji_abordajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ji_abordajeActionPerformed
+        // TODO add your handling code here:
+        jd_aeropuerto.setModal(true);
+        jd_aeropuerto.pack();
+        jd_aeropuerto.setLocationRelativeTo(this); 
+        jd_aeropuerto.setVisible(true);
+    }//GEN-LAST:event_ji_abordajeActionPerformed
+
+    private void jb_despacharAvionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_despacharAvionActionPerformed
+        //Un viaje
+        new Thread(new Viaje()).start();
+        //Animacion de Progress Bar
+        new Thread(new HiloViaje(this.barraProgreso)).start();
+
+    }//GEN-LAST:event_jb_despacharAvionActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -271,13 +339,19 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JProgressBar barraProgreso;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JButton jb_agregarIlegal;
+    private javax.swing.JButton jb_despacharAvion;
     private javax.swing.JMenuBar jb_menu;
     private com.toedter.calendar.JDateChooser jc_date;
+    private javax.swing.JDialog jd_aeropuerto;
     private javax.swing.JDialog jd_registro;
+    private javax.swing.JMenuItem ji_abordaje;
     private javax.swing.JMenuItem ji_registro;
     private javax.swing.JMenu jm_menu1;
+    private javax.swing.JPanel jp_1;
     private javax.swing.JSpinner js_raza;
     private javax.swing.JLabel lb_fecha;
     private javax.swing.JLabel lb_imagenRegistro;
@@ -285,6 +359,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel lb_nacionalidad1;
     private javax.swing.JLabel lb_nombre;
     private javax.swing.JLabel lb_pais;
+    private javax.swing.JLabel lb_progreso;
     private javax.swing.JLabel lb_raza;
     private javax.swing.JTextField tf_nacionalidad;
     private javax.swing.JTextField tf_nombre;
