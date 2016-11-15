@@ -7,12 +7,10 @@ package great;
 
 import java.awt.Image;
 import java.awt.Toolkit;
-import java.util.Calendar;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-
 
 /**
  *
@@ -27,7 +25,9 @@ public class Principal extends javax.swing.JFrame {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
         administrarIlegales.cargarArchivo();
-        System.out.println(administrarIlegales.getList().getHead());
+        for (int i = 0; i < aeropuerto.getCap(); i++) {
+            aeropuerto.entrar(new Avion(i));
+        }
         Image img = Toolkit.getDefaultToolkit().createImage("./trump2.jpg").getScaledInstance(1400, 700, 0);
         this.lb_imgPrincipal.setIcon(new ImageIcon(img));
     }
@@ -184,7 +184,7 @@ public class Principal extends javax.swing.JFrame {
 
         jd_abordaje.setTitle("Aeropuerto");
 
-        lb_progreso.setText("Progreso de Viaje");
+        lb_progreso.setText("Abordaje");
 
         jb_abordarAvion.setText("Abordar Avion");
         jb_abordarAvion.addActionListener(new java.awt.event.ActionListener() {
@@ -202,13 +202,12 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(jd_abordajeLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jd_abordajeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(barraProgreso1, javax.swing.GroupLayout.DEFAULT_SIZE, 680, Short.MAX_VALUE)
+                    .addComponent(barraProgreso1, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
                     .addGroup(jd_abordajeLayout.createSequentialGroup()
-                        .addGroup(jd_abordajeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lb_progreso)
-                            .addComponent(jb_abordarAvion, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
-                            .addComponent(jc_ilegales, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(lb_progreso)
+                        .addGap(0, 165, Short.MAX_VALUE))
+                    .addComponent(jc_ilegales, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jb_abordarAvion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jd_abordajeLayout.setVerticalGroup(
@@ -220,9 +219,9 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(barraProgreso1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addComponent(jc_ilegales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(111, 111, 111)
+                .addGap(32, 32, 32)
                 .addComponent(jb_abordarAvion, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(179, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -289,15 +288,15 @@ public class Principal extends javax.swing.JFrame {
         this.lb_imagenRegistro.setIcon(new ImageIcon(img));
         jd_registro.setModal(true);
         jd_registro.pack();
-        jd_registro.setLocationRelativeTo(this); 
+        jd_registro.setLocationRelativeTo(this);
         jd_registro.setVisible(true);
 
     }//GEN-LAST:event_ji_registroActionPerformed
 
     private void jb_agregarIlegalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_agregarIlegalActionPerformed
         // TODO add your handling code here:
-        String fecha = ((JTextField)jc_date.getDateEditor().getUiComponent()).getText();
-        Ilegal ilegal = new Ilegal(tf_nombre.getText(),tf_nacionalidad.getText(),fecha,js_raza.getValue().toString(),tf_pais.getText(),false);
+        String fecha = ((JTextField) jc_date.getDateEditor().getUiComponent()).getText();
+        Ilegal ilegal = new Ilegal(tf_nombre.getText(), tf_nacionalidad.getText(), fecha, js_raza.getValue().toString(), tf_pais.getText(), false);
         administrarIlegales.write(ilegal);
         //administrarIlegales.getList().add(ilegal);
     }//GEN-LAST:event_jb_agregarIlegalActionPerformed
@@ -311,12 +310,12 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
         DefaultComboBoxModel model = new DefaultComboBoxModel();
         for (int i = 0; i < administrarIlegales.getList().getSize(); i++) {
-            model.addElement(administrarIlegales.getList().get(i));            
+            model.addElement(administrarIlegales.getList().get(i));
         }
         jc_ilegales.setModel(model);
         jd_abordaje.setModal(true);
         jd_abordaje.pack();
-        jd_abordaje.setLocationRelativeTo(this); 
+        jd_abordaje.setLocationRelativeTo(this);
         jd_abordaje.setVisible(true);
     }//GEN-LAST:event_ji_abordajeActionPerformed
 
@@ -324,11 +323,19 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
         Ilegal temp = (Ilegal) jc_ilegales.getSelectedItem();
         if (!temp.isDeported()) {
-            //Agregar avion a lista en avion
+            aeropuerto.Abord(temp);
+            temp.changeStatus(true);
+            JOptionPane.showMessageDialog(null, "Great!!");
+            if (((Avion)aeropuerto.ver()).isFull()) {
+                Viaje.Queue(aeropuerto.salir());
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "El Ilegal ya ha sido deportado!", "Error", JOptionPane.WARNING_MESSAGE);
         }
-        else{
-            JOptionPane.showMessageDialog(null, "El Ilegal ya ha sido deportado!");
+        for (int i = 0; i < administrarIlegales.getList().size; i++) {
+            System.out.println(((Ilegal)administrarIlegales.getList().get(i)).isDeported());
         }
+        administrarIlegales.refresh();
     }//GEN-LAST:event_jb_abordarAvionActionPerformed
 
     /**
@@ -393,8 +400,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField tf_nombre;
     private javax.swing.JTextField tf_pais;
     // End of variables declaration//GEN-END:variables
-    AdminIlegales administrarIlegales = new 
-        AdminIlegales("./ilegales.bin");
+    AdminIlegales administrarIlegales = new AdminIlegales("./ilegales.bin");
     Aeropuerto aeropuerto = new Aeropuerto();
-    
+    Queue Viaje = new Queue();
+
 }

@@ -191,15 +191,13 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="barraProgreso1" alignment="0" pref="680" max="32767" attributes="0"/>
+                      <Component id="barraProgreso1" alignment="0" pref="209" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="lb_progreso" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jb_abordarAvion" alignment="0" pref="142" max="32767" attributes="0"/>
-                              <Component id="jc_ilegales" alignment="0" max="32767" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Component id="lb_progreso" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="165" max="32767" attributes="0"/>
                       </Group>
+                      <Component id="jc_ilegales" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jb_abordarAvion" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -214,9 +212,9 @@
                   <Component id="barraProgreso1" min="-2" pref="26" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                   <Component id="jc_ilegales" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="111" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                   <Component id="jb_abordarAvion" min="-2" pref="72" max="-2" attributes="0"/>
-                  <EmptySpace pref="179" max="32767" attributes="0"/>
+                  <EmptySpace pref="38" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -224,7 +222,7 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="lb_progreso">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Progreso de Viaje"/>
+            <Property name="text" type="java.lang.String" value="Abordaje"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JProgressBar" name="barraProgreso1">

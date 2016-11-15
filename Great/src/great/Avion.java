@@ -3,20 +3,26 @@ package great;
 import java.util.Objects;
 
 public class Avion {
-    private int numero;
+    private int numero = 0;
     private final int cap = 5;
-    private final Stack pasajeros = new Stack();
+    private LinkedList pasajeros = new LinkedList();
 
     public Avion(int numero) {
         this.numero = numero;
     }
     
     public void abordar(Ilegal x){
-        pasajeros.Push(x);
+        pasajeros.add(x);
+        numero++;
     }
     
-    public void desabordar(){
-        pasajeros.Pop();
+    public void desabordar(int x){
+        pasajeros.delete(x);
+        numero--;
+    }
+    
+    public boolean isFull(){
+        return numero == cap;
     }
     
     @Override
