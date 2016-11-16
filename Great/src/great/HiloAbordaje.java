@@ -34,6 +34,7 @@ public class HiloAbordaje implements Runnable{
                 break;  
             }            
         }
+        barraProgreso.setValue(0);
     }
 
 }

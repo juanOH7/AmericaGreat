@@ -299,6 +299,11 @@ public class Principal extends javax.swing.JFrame {
         Ilegal ilegal = new Ilegal(tf_nombre.getText(), tf_nacionalidad.getText(), fecha, js_raza.getValue().toString(), tf_pais.getText(), false);
         administrarIlegales.write(ilegal);
         //administrarIlegales.getList().add(ilegal);
+        tf_nacionalidad.setText("");
+        tf_nombre.setText("");
+        js_raza.setValue(js_raza.getValue());
+        tf_pais.setText("");
+
     }//GEN-LAST:event_jb_agregarIlegalActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
@@ -308,6 +313,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void ji_abordajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ji_abordajeActionPerformed
         // TODO add your handling code here:
+        administrarIlegales.cargarArchivo();
         DefaultComboBoxModel model = new DefaultComboBoxModel();
         for (int i = 0; i < administrarIlegales.getList().getSize(); i++) {
             model.addElement(administrarIlegales.getList().get(i));
@@ -322,9 +328,14 @@ public class Principal extends javax.swing.JFrame {
     private void jb_abordarAvionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_abordarAvionActionPerformed
         // TODO add your handling code here:
         Ilegal temp = (Ilegal) jc_ilegales.getSelectedItem();
-        new Thread(new Abordaje(aeropuerto,administrarIlegales,temp)).start();
         //Animacion de Progress Bar
-        new Thread(new HiloAbordaje(this.barraProgreso1)).start();
+        if (!temp.isDeported()) {
+            new Thread(new Abordaje(aeropuerto, administrarIlegales, temp, Viaje)).start();
+            new Thread(new HiloAbordaje(this.barraProgreso1)).start();
+        } else {
+            JOptionPane.showMessageDialog(null, "El Ilegal ya ha sido deportado!", "Error", JOptionPane.WARNING_MESSAGE);
+        }
+
         /*
         if (!temp.isDeported()) {
             new Thread(new Abordaje()).start();
@@ -343,7 +354,7 @@ public class Principal extends javax.swing.JFrame {
             System.out.println(((Ilegal)administrarIlegales.getList().get(i)).isDeported());
         }
         administrarIlegales.refresh();
-        */
+         */
     }//GEN-LAST:event_jb_abordarAvionActionPerformed
 
     /**
