@@ -29,7 +29,7 @@ public class HiloAbordaje implements Runnable{
             //si el trabajo en paralelo a terminado
             if( Abordaje.band )
             {
-                barraProgreso.setValue(1000);
+                barraProgreso.setValue(0);
                 JOptionPane.showMessageDialog(null, "El Ilegal Termino Su Abordaje");
                 break;  
             }            

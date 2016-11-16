@@ -60,6 +60,8 @@ public class Principal extends javax.swing.JFrame {
         barraProgreso1 = new javax.swing.JProgressBar();
         jb_abordarAvion = new javax.swing.JButton();
         jc_ilegales = new javax.swing.JComboBox<>();
+        barraViaje = new javax.swing.JProgressBar();
+        lb_progresoAviones = new javax.swing.JLabel();
         lb_imgPrincipal = new javax.swing.JLabel();
         jb_menu = new javax.swing.JMenuBar();
         jm_menu1 = new javax.swing.JMenu();
@@ -184,7 +186,8 @@ public class Principal extends javax.swing.JFrame {
 
         jd_abordaje.setTitle("Aeropuerto");
 
-        lb_progreso.setText("Abordaje");
+        lb_progreso.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lb_progreso.setText("Progreso Abordaje");
 
         jb_abordarAvion.setText("Abordar Avion");
         jb_abordarAvion.addActionListener(new java.awt.event.ActionListener() {
@@ -195,34 +198,49 @@ public class Principal extends javax.swing.JFrame {
 
         jc_ilegales.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        barraViaje.setOrientation(1);
+
+        lb_progresoAviones.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lb_progresoAviones.setText("Progreso Aviones");
+
         javax.swing.GroupLayout jd_abordajeLayout = new javax.swing.GroupLayout(jd_abordaje.getContentPane());
         jd_abordaje.getContentPane().setLayout(jd_abordajeLayout);
         jd_abordajeLayout.setHorizontalGroup(
             jd_abordajeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jd_abordajeLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(20, 20, 20)
                 .addGroup(jd_abordajeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(barraProgreso1, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
-                    .addGroup(jd_abordajeLayout.createSequentialGroup()
-                        .addComponent(lb_progreso)
-                        .addGap(0, 165, Short.MAX_VALUE))
-                    .addComponent(jc_ilegales, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jb_abordarAvion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addComponent(lb_progreso)
+                    .addComponent(jc_ilegales, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(barraProgreso1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jb_abordarAvion, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addGroup(jd_abordajeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(barraViaje, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lb_progresoAviones))
+                .addGap(95, 95, 95))
         );
         jd_abordajeLayout.setVerticalGroup(
             jd_abordajeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jd_abordajeLayout.createSequentialGroup()
                 .addGap(39, 39, 39)
-                .addComponent(lb_progreso)
+                .addGroup(jd_abordajeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lb_progreso)
+                    .addComponent(lb_progresoAviones))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(barraProgreso1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(jc_ilegales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addComponent(jb_abordarAvion, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addGroup(jd_abordajeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jd_abordajeLayout.createSequentialGroup()
+                        .addGap(5, 5, 5)
+                        .addComponent(barraProgreso1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jc_ilegales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jb_abordarAvion, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(barraViaje, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(140, Short.MAX_VALUE))
         );
+
+        jd_abordajeLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {barraProgreso1, jc_ilegales});
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("America Great");
@@ -303,6 +321,7 @@ public class Principal extends javax.swing.JFrame {
         tf_nombre.setText("");
         js_raza.setValue(js_raza.getValue());
         tf_pais.setText("");
+        JOptionPane.showMessageDialog(null, "Ilegal Agregado");
 
     }//GEN-LAST:event_jb_agregarIlegalActionPerformed
 
@@ -313,6 +332,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void ji_abordajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ji_abordajeActionPerformed
         // TODO add your handling code here:
+        jc_ilegales.removeAllItems();
         administrarIlegales.cargarArchivo();
         DefaultComboBoxModel model = new DefaultComboBoxModel();
         for (int i = 0; i < administrarIlegales.getList().getSize(); i++) {
@@ -330,7 +350,7 @@ public class Principal extends javax.swing.JFrame {
         Ilegal temp = (Ilegal) jc_ilegales.getSelectedItem();
         //Animacion de Progress Bar
         if (!temp.isDeported()) {
-            new Thread(new Abordaje(aeropuerto, administrarIlegales, temp, Viaje)).start();
+            new Thread(new Abordaje(aeropuerto, administrarIlegales, temp, Viaje,barraViaje)).start();
             new Thread(new HiloAbordaje(this.barraProgreso1)).start();
         } else {
             JOptionPane.showMessageDialog(null, "El Ilegal ya ha sido deportado!", "Error", JOptionPane.WARNING_MESSAGE);
@@ -394,6 +414,7 @@ public class Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JProgressBar barraProgreso1;
+    private javax.swing.JProgressBar barraViaje;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JButton jb_abordarAvion;
@@ -414,6 +435,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel lb_nombre;
     private javax.swing.JLabel lb_pais;
     private javax.swing.JLabel lb_progreso;
+    private javax.swing.JLabel lb_progresoAviones;
     private javax.swing.JLabel lb_raza;
     private javax.swing.JTextField tf_nacionalidad;
     private javax.swing.JTextField tf_nombre;

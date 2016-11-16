@@ -2,6 +2,7 @@ package great;
 
 import java.util.Random;
 import javax.swing.JOptionPane;
+import javax.swing.JProgressBar;
 
 /**
  * @DanielSalgado
@@ -15,12 +16,14 @@ public class Abordaje implements Runnable {
     private Queue Viaje;
     private AdminIlegales ai;
     private Ilegal ilegal;
+    JProgressBar barraViaje;
 
-    public Abordaje(Aeropuerto aeropuerto, AdminIlegales ai, Ilegal ilegal, Queue cola) {
+    public Abordaje(Aeropuerto aeropuerto, AdminIlegales ai, Ilegal ilegal, Queue cola,JProgressBar barraViaje) {
         this.aeropuerto = aeropuerto;
         this.ai = ai;
         this.ilegal = ilegal;
         this.Viaje = cola;
+        this.barraViaje = barraViaje;
     }
 
     @Override
@@ -36,9 +39,10 @@ public class Abordaje implements Runnable {
         }
         aeropuerto.Abord(ilegal);
         ilegal.changeStatus(true);
-        //JOptionPane.showMessageDialog(null, "Great!!");
         if (((Avion) aeropuerto.ver()).isFull()) {
             Viaje.Queue(aeropuerto.salir());
+            new Thread(new Viaje()).start();
+            new Thread(new HiloViaje(this.barraViaje)).start();
         }
         ai.refresh();
         band = true;

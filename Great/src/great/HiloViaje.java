@@ -5,16 +5,16 @@ import javax.swing.JProgressBar;
 
 public class HiloViaje implements Runnable{
     
-    private JProgressBar barraProgreso;
+    private JProgressBar barraViaje;
     private int i = 1;
     private int value = 100;//retardo en milisegundos
 
     /**
      * Constructor de clase
      */
-    public HiloViaje( JProgressBar barraProgreso)
+    public HiloViaje( JProgressBar barraViaje)
     {
-        this.barraProgreso = barraProgreso;
+        this.barraViaje = barraViaje;
     }
 
     @Override
@@ -24,15 +24,15 @@ public class HiloViaje implements Runnable{
         {
             //si llega al limite 100 comienza otra vez desde 1, sino incrementa i en +1
             i = (i > 100) ? 1 : i+1;
-            barraProgreso.setValue(i);
-            barraProgreso.repaint();  
+            barraViaje.setValue(i);
+            barraViaje.repaint();  
             //duracion en milisegundos
             try{Thread.sleep(this.value );}            
             catch (InterruptedException e){ System.err.println( e.getMessage() ); }            
             //si el trabajo en paralelo a terminado
             if( Viaje.band )
             {
-                barraProgreso.setValue(1000);
+                barraViaje.setValue(1000);
                 JOptionPane.showMessageDialog(null, "El Avion Termino Su Ruta");
                 break;  
             }            
