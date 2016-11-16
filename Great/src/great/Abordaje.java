@@ -41,6 +41,7 @@ public class Abordaje implements Runnable {
         ilegal.changeStatus(true);
         if (((Avion) aeropuerto.ver()).isFull()) {
             Viaje.Queue(aeropuerto.salir());
+            aeropuerto.entrar((Avion)Viaje.Dequeue());
             new Thread(new Viaje()).start();
             new Thread(new HiloViaje(this.barraViaje)).start();
         }

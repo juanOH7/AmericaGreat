@@ -32,7 +32,7 @@ public class HiloViaje implements Runnable{
             //si el trabajo en paralelo a terminado
             if( Viaje.band )
             {
-                barraViaje.setValue(1000);
+                barraViaje.setValue(0);
                 JOptionPane.showMessageDialog(null, "El Avion Termino Su Ruta");
                 break;  
             }            

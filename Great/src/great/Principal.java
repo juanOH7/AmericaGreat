@@ -54,7 +54,6 @@ public class Principal extends javax.swing.JFrame {
         tf_pais = new javax.swing.JTextField();
         jb_agregarIlegal = new javax.swing.JButton();
         lb_imagenRegistro = new javax.swing.JLabel();
-        jDialog1 = new javax.swing.JDialog();
         jd_abordaje = new javax.swing.JDialog();
         lb_progreso = new javax.swing.JLabel();
         barraProgreso1 = new javax.swing.JProgressBar();
@@ -62,12 +61,12 @@ public class Principal extends javax.swing.JFrame {
         jc_ilegales = new javax.swing.JComboBox<>();
         barraViaje = new javax.swing.JProgressBar();
         lb_progresoAviones = new javax.swing.JLabel();
+        JL_Viaje = new javax.swing.JLabel();
         lb_imgPrincipal = new javax.swing.JLabel();
         jb_menu = new javax.swing.JMenuBar();
         jm_menu1 = new javax.swing.JMenu();
         ji_registro = new javax.swing.JMenuItem();
         ji_abordaje = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
 
         jd_registro.setTitle("Registro Ilegales");
 
@@ -173,17 +172,6 @@ public class Principal extends javax.swing.JFrame {
 
         jd_registroLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {js_raza, tf_pais});
 
-        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
-        jDialog1.getContentPane().setLayout(jDialog1Layout);
-        jDialog1Layout.setHorizontalGroup(
-            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        jDialog1Layout.setVerticalGroup(
-            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
-
         jd_abordaje.setTitle("Aeropuerto");
 
         lb_progreso.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -219,6 +207,10 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(barraViaje, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lb_progresoAviones))
                 .addGap(95, 95, 95))
+            .addGroup(jd_abordajeLayout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addComponent(JL_Viaje, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jd_abordajeLayout.setVerticalGroup(
             jd_abordajeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -237,7 +229,9 @@ public class Principal extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jb_abordarAvion, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(barraViaje, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(140, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(JL_Viaje, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+                .addGap(32, 32, 32))
         );
 
         jd_abordajeLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {barraProgreso1, jc_ilegales});
@@ -276,9 +270,6 @@ public class Principal extends javax.swing.JFrame {
         jm_menu1.add(ji_abordaje);
 
         jb_menu.add(jm_menu1);
-
-        jMenu2.setText("Edit");
-        jb_menu.add(jMenu2);
 
         setJMenuBar(jb_menu);
 
@@ -332,17 +323,23 @@ public class Principal extends javax.swing.JFrame {
 
     private void ji_abordajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ji_abordajeActionPerformed
         // TODO add your handling code here:
-        jc_ilegales.removeAllItems();
-        administrarIlegales.cargarArchivo();
-        DefaultComboBoxModel model = new DefaultComboBoxModel();
-        for (int i = 0; i < administrarIlegales.getList().getSize(); i++) {
-            model.addElement(administrarIlegales.getList().get(i));
+        try {
+            jc_ilegales.removeAllItems();
+            administrarIlegales.cargarArchivo();
+            DefaultComboBoxModel model = new DefaultComboBoxModel();
+            for (int i = 0; i < administrarIlegales.getList().getSize(); i++) {
+                model.addElement(administrarIlegales.getList().get(i));
+            }
+            Image img = Toolkit.getDefaultToolkit().createImage("./trump3.jpg").getScaledInstance(149, 90, 0);
+            this.JL_Viaje.setIcon(new ImageIcon(img));
+            jc_ilegales.setModel(model);
+            jd_abordaje.setModal(true);
+            jd_abordaje.pack();
+            jd_abordaje.setLocationRelativeTo(this);
+            jd_abordaje.setVisible(true);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "No Hay Registros", "Error", JOptionPane.WARNING_MESSAGE);
         }
-        jc_ilegales.setModel(model);
-        jd_abordaje.setModal(true);
-        jd_abordaje.pack();
-        jd_abordaje.setLocationRelativeTo(this);
-        jd_abordaje.setVisible(true);
     }//GEN-LAST:event_ji_abordajeActionPerformed
 
     private void jb_abordarAvionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_abordarAvionActionPerformed
@@ -350,7 +347,7 @@ public class Principal extends javax.swing.JFrame {
         Ilegal temp = (Ilegal) jc_ilegales.getSelectedItem();
         //Animacion de Progress Bar
         if (!temp.isDeported()) {
-            new Thread(new Abordaje(aeropuerto, administrarIlegales, temp, Viaje,barraViaje)).start();
+            new Thread(new Abordaje(aeropuerto, administrarIlegales, temp, Viaje, barraViaje)).start();
             new Thread(new HiloAbordaje(this.barraProgreso1)).start();
         } else {
             JOptionPane.showMessageDialog(null, "El Ilegal ya ha sido deportado!", "Error", JOptionPane.WARNING_MESSAGE);
@@ -413,10 +410,9 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel JL_Viaje;
     private javax.swing.JProgressBar barraProgreso1;
     private javax.swing.JProgressBar barraViaje;
-    private javax.swing.JDialog jDialog1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JButton jb_abordarAvion;
     private javax.swing.JButton jb_agregarIlegal;
     private javax.swing.JMenuBar jb_menu;

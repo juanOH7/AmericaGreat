@@ -3,28 +3,29 @@ package great;
 import java.util.Objects;
 
 public class Avion {
+
     private int numero = 0;
     private final int cap = 5;
-    private LinkedList pasajeros = new LinkedList();
+    private Stack pasajeros = new Stack();
 
     public Avion(int numero) {
         this.numero = numero;
     }
-    
-    public void abordar(Ilegal x){
-        pasajeros.add(x);
+
+    public void abordar(Ilegal x) {
+        pasajeros.Push(x);
         numero++;
     }
-    
-    public void desabordar(int x){
-        pasajeros.delete(x);
+
+    public Object desabordar(int x) {
         numero--;
+        return pasajeros.Pop();
     }
-    
-    public boolean isFull(){
+
+    public boolean isFull() {
         return numero == cap;
     }
-    
+
     @Override
     public int hashCode() {
         int hash = 7;
@@ -57,6 +58,5 @@ public class Avion {
         }
         return true;
     }
-    
-    
+
 }
