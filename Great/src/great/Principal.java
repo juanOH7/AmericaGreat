@@ -322,6 +322,10 @@ public class Principal extends javax.swing.JFrame {
     private void jb_abordarAvionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_abordarAvionActionPerformed
         // TODO add your handling code here:
         Ilegal temp = (Ilegal) jc_ilegales.getSelectedItem();
+        new Thread(new Abordaje(aeropuerto,administrarIlegales,temp)).start();
+        //Animacion de Progress Bar
+        new Thread(new HiloAbordaje(this.barraProgreso1)).start();
+        /*
         if (!temp.isDeported()) {
             new Thread(new Abordaje()).start();
             //Animacion de Progress Bar
@@ -339,6 +343,7 @@ public class Principal extends javax.swing.JFrame {
             System.out.println(((Ilegal)administrarIlegales.getList().get(i)).isDeported());
         }
         administrarIlegales.refresh();
+        */
     }//GEN-LAST:event_jb_abordarAvionActionPerformed
 
     /**

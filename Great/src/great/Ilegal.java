@@ -13,6 +13,9 @@ public class Ilegal implements Serializable{
     private String origen;
     private boolean deportado;
 
+    public Ilegal() {
+    }
+    
     public Ilegal(String nombre, String nacionalidad, String nacimiento, String raza, String origen, boolean deportado) {
         this.nombre = nombre;
         this.nacionalidad = nacionalidad;
